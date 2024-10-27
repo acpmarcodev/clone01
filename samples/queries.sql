@@ -15,11 +15,11 @@ left join stocks stocks on stocks.product_id = products.product_id
 where stocks.store_id is null
 
 -- Agrupar a quantidade de vendas que uma determinada Marca por Loja. 
-select brand_id, count(*) from orders
+select brand_id, orders.store_id, count(*) from orders
 inner join orders_itens on orders_itens.order_id = orders.order_id
 inner join products on products.product_id = orders_itens.product_id
 inner join brands on brands.brand_id = products.brand_id
-group by brand_id
+group by brand_id, orders.store_id
 
 -- Listar os Funcionarios que não estejam relacionados a um Pedido.
 select * from staffs
